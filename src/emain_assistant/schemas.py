@@ -1,7 +1,7 @@
 
 from pydantic import BaseModel, Field
 from typing_extensions import Literal
-
+from langgraph.graph import MessagesState
 
 class RouterSchema(BaseModel):
     reasoning: str = Field(description="Step-by-step reasoning behind the classification")
@@ -11,4 +11,10 @@ class RouterSchema(BaseModel):
         "'respond' for emails that need a reply"
     )
 
+
+
+
+class State(MessagesState):
+    email_input:dict 
+    classification_decision: Literal["ignore","responsd","notify"]
 
