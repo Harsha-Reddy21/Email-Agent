@@ -1,6 +1,6 @@
 
 from pydantic import BaseModel, Field
-from typing_extensions import Literal
+from typing_extensions import Literal, TypedDict
 from langgraph.graph import MessagesState
 
 class RouterSchema(BaseModel):
@@ -18,3 +18,13 @@ class State(MessagesState):
     email_input:dict 
     classification_decision: Literal["ignore","responsd","notify"]
 
+
+
+class UserPrefernces(BaseModel):
+    chain_of_thought: str= Field(description="Reasoning about which user preferences need to add/update if required")
+    user_preferences: str = Field(description='Updated user preferences')
+
+
+class StateInput(TypedDict):
+
+    email_input: dict

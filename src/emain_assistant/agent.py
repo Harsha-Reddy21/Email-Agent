@@ -68,6 +68,9 @@ def llm_call(state:State):
         responses_preferences=DEFAULT_RESPONSE_PREFERENCES,
         cal_preferences=DEFAULT_CAL_PREFERENCES
     )
+    print("******")
+    print(f'state',state['messages'])
+    print('------')
 
     return {
         "messages":[
@@ -91,6 +94,7 @@ def tool_handler(state:State):
             "tool_call_id":tool_call['id']
         })
         print(f"Tool executed: {tool_call['name']}")
+        print(f"Tool Args",tool_call['args'])
 
     return {'messages':result}
 
